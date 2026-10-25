@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shangri-La Boracay Hotel Reservation Form</title>
+<style>
+:root{--bg:#faf8f4;--card:#fff;--ink:#2b2622;--mute:#6f665e;--line:#ddd5ca;--accent:#8a6a3b;--accent-ink:#fff;--warn:#a23b2a;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1917;--card:#26221f;--ink:#f1ebe3;--mute:#a69c91;--line:#443d37;--accent:#d3ac6c;--accent-ink:#1c1917;--warn:#ff8f7a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1917;--card:#26221f;--ink:#f1ebe3;--mute:#a69c91;--line:#443d37;--accent:#d3ac6c;--accent-ink:#1c1917;--warn:#ff8f7a;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Georgia,"Times New Roman",serif}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 60px}
+header{text-align:center;padding:12px 0 18px;border-bottom:2px solid var(--accent);margin-bottom:18px}
+header .logo{display:block;margin:0 auto 6px;height:64px;width:auto;max-width:100%;background:#fff;border-radius:6px;padding:2px 8px}
+header h1{margin:0;font-size:1.1rem;font-weight:600}
+header p{margin:4px 0 0;color:var(--mute)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:16px}
+h2{font-size:1.05rem;margin:0 0 10px;color:var(--accent);text-transform:uppercase;letter-spacing:.06em}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%}
+td,th{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left}
+td.r,th.r{text-align:right;white-space:nowrap}
+ul{margin:4px 0;padding-left:20px}
+li{margin:2px 0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:640px){.cols{grid-template-columns:1fr}}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+.full{grid-column:1/-1}
+label{display:block;font-size:.85rem;color:var(--mute);margin-bottom:3px;font-family:system-ui,sans-serif}
+input,select,textarea{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit;font-family:system-ui,sans-serif}
+textarea{min-height:70px;resize:vertical}
+textarea.nm{min-height:46px}
+.grw{display:flex;gap:6px;margin-bottom:6px}
+.grw input{flex:1;min-width:0}
+.grw select{flex:0 0 auto;width:125px}
+.grw .g-age{width:95px}
+.chk{display:flex;align-items:center;gap:4px;font:.85rem system-ui,sans-serif;margin:0;white-space:nowrap;color:var(--ink)}
+.grw .chk input{flex:none;width:auto;margin:0}
+.flt{display:flex;gap:8px;flex-wrap:wrap}
+.flt>div{flex:1 1 90px;min-width:0}
+.flt>div:first-child{flex:2 1 150px}
+.flt>div:last-child{flex:1 1 100%}
+.flt select,.flt input{height:36px}
+select:disabled{opacity:1;color:var(--ink)}
+button.sm{padding:4px 10px;font-size:.8rem}
+button.x{padding:4px 10px}
+button:disabled{opacity:.45;cursor:not-allowed}
+a{color:var(--accent)}
+.notice{border:2px solid var(--accent);border-left-width:6px;font-size:1.02rem}
+.agegrp{display:flex;flex-direction:column;gap:4px;border:1px solid var(--line);border-radius:6px;padding:4px;background:var(--bg)}
+.agegrp select{width:100%}
+@media(min-width:641px){.nmcol{grid-row:span 2}}
+.extra td{font-weight:700;color:var(--accent);border-top:2px solid var(--accent)}
+.taxinc{font-weight:700;font-size:.85em;color:var(--accent);margin:0 0 8px}
+.cnt{width:150px}
+.dates{display:flex;gap:8px}
+.dates>div{flex:1;min-width:0}
+.cnt select,.agegrp select{padding:4px 6px;font-size:.85rem}
+.gn{flex:0 0 auto;align-self:center;width:1.8em;text-align:right;color:var(--mute);font-family:system-ui,sans-serif;font-variant-numeric:tabular-nums}
+input[readonly]{opacity:.85}
+.room{border:1px dashed var(--line);border-radius:8px;padding:12px;margin-bottom:12px}
+.room h3{margin:0 0 8px;font-size:.95rem;display:flex;justify-content:space-between;align-items:center}
+button{font:600 .9rem system-ui,sans-serif;padding:9px 16px;border-radius:6px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer}
+button.primary{background:var(--accent);color:var(--accent-ink)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.est{font-family:system-ui,sans-serif;font-size:.9rem}
+.est b{font-size:1.1rem}
+.warn{color:var(--warn);font-size:.85rem;font-family:system-ui,sans-serif}
+.note{font-size:.82rem;color:var(--mute);font-family:system-ui,sans-serif}
+.to{font-family:system-ui,sans-serif;font-size:.9rem;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 12px}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:20px;font:.85rem system-ui,sans-serif;display:none}
+.print-val{display:none}
+@media print{
+ :root,:root[data-theme="dark"]{--bg:#fff;--card:#fff;--ink:#000;--mute:#444;--line:#999;--accent:#000;color-scheme:light}
+ body{font-size:11px}.wrap{padding:0;max-width:none}
+ .actions,.noprint,#toast{display:none!important}
+ .card{break-inside:avoid;border-radius:0;padding:8px;margin-bottom:8px}
+ input,select,textarea{border:none;border-bottom:1px solid #000;border-radius:0;background:transparent;padding:2px 0;-webkit-appearance:none;appearance:none}
+ textarea{border:1px solid #000;min-height:50px}
+ body{font-size:9.5px;line-height:1.3}
+ header{padding:2px 0 6px;margin-bottom:6px}header .logo{height:38px;margin-bottom:2px;padding:0}header h1{font-size:.85rem}header p{margin:0}
+ h2{font-size:.8rem;margin:0 0 4px}
+ .card{padding:5px 8px;margin-bottom:5px}
+ .grid{gap:5px 10px}.cols{gap:10px}
+ td,th{padding:1px 6px}
+ ul{margin:2px 0;padding-left:14px}li{margin:0}
+ .room{padding:5px;margin-bottom:5px}.room h3{margin:0 0 3px;font-size:.85rem}
+ textarea{min-height:26px}
+ label{margin-bottom:0}
+ .usd,.usdtxt{display:none!important}
+ .card{border:none!important;background:transparent;padding:3px 0}
+ .room{border:none;border-radius:0;padding:4px 0}
+ header{border-bottom:1px solid #000}
+ input,select,textarea{font-size:11.5px;font-weight:600;color:#000}
+ textarea{border:none;border-radius:0;resize:none;overflow:hidden;min-height:0}
+ label{font-size:8.5px;color:#444}
+ ::placeholder{color:transparent}
+ table{width:50%;margin:0}
+ td{padding:1px 28px 1px 0}
+ td.r{padding-right:0}
+ .est,.est .note{font-size:8px}
+ .est b{font-size:8.5px}
+ .est h2{font-size:.7rem;margin-bottom:2px}
+ .fltnote{font-size:8.5px}
+ textarea.nm{min-height:20px}
+ .agegrp{border:none;padding:0;background:transparent}
+ .grw{max-width:none}
+ input,select,textarea{width:100%!important;max-width:none}
+ #cc{width:auto!important}
+ .grw select{width:105px!important}
+ .grw .g-age{width:80px!important}
+ .chk{color:#000;font-size:9px}
+ .flt{display:grid!important;grid-template-columns:1.5fr 1fr 1.3fr;gap:8px;align-items:end}
+ .flt input[type=time]{min-width:95px;font-size:10px!important}
+ .flt input::-webkit-datetime-edit-ampm-field{padding:0}
+ .flt>div{min-width:0}
+ .flt label{white-space:nowrap;overflow:hidden;line-height:11px;height:11px}
+ .flt input::-webkit-datetime-edit{padding:0}
+ .flt select,.flt input{height:20px!important;box-sizing:border-box;line-height:18px;padding-top:0!important;padding-bottom:0!important}
+ .flt>div:last-child{flex:1 1 90px}
+ .grw .chk input{width:auto!important;-webkit-appearance:checkbox!important;appearance:auto!important;border:none!important;padding:0!important}
+ .gn{color:#000;font-weight:600;align-self:flex-end;padding-bottom:1px}
+ .pbox{border:none!important;padding:0;margin:0 0 6px}
+ .pbox .card{border:1px solid #000!important;padding:4px 8px;margin-bottom:5px}
+ input,select,textarea{border:none!important;border-bottom:1px solid #000!important;border-radius:0!important;padding:2px 0!important}
+ textarea{min-height:18px}
+ .notice{border:1px solid #000!important;border-left:4px solid #000!important;padding:4px 8px;font-size:10px}
+}
+@page{margin:.4in}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <img class="logo" alt="Shangri-La Boracay" src="data:image/png;base64,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">
+ <h1>Hotel Reservation Form</h1>
+ <p>Macabuhay–Aguila Wedding · 24 May 2027</p>
+</header>
+
+<div class="card to noprint">
+ <b>To:</b> reservations.slbo@shangri-la.com<br>
+ <b>Subject:</b> Macabuhay-Aguila Wedding 24MAY2027<br>
+ <b>Booking deadline:</b> January 8, 2027
+</div>
+
+<div class="card noprint">
+ <h2>How to Reserve</h2>
+ <ol style="margin:4px 0;padding-left:22px">
+  <li><b>Fill in</b> this form.</li>
+  <li>Click <b>“Print form”</b> and choose <b>Save as PDF</b>. On a phone, tap <b>“Share as PDF”</b> instead.</li>
+  <li>Click <b>“Open in email app”</b>, attach the PDF, and press <b>Send</b>.</li>
+ </ol>
+ <div class="note">Email didn’t open? Click “Copy email text” and paste it into a new email to reservations.slbo@shangri-la.com. Send by <b>January 8, 2027</b>. Payment is arranged directly with the hotel.</div>
+</div>
+
+<div class="card">
+ <h2>Daily Room Rates (Philippine Peso)</h2>
+ <div class="taxinc">All rates are inclusive of applicable taxes and mandatory charges.</div>
+ <div class="note noprint" style="margin-bottom:8px">Estimated exchange rate: 1 USD = PHP <input id="fx" type="number" step="0.01" min="1" value="63.00" style="width:90px;display:inline-block;padding:3px 6px"> (you can change this)</div>
+ <div class="scroll"><table>
+  <tr><td>Deluxe Room</td><td class="r">PHP 23,284.50 net</td><td class="r usd" data-php="23284.50"></td></tr>
+  <tr><td>Deluxe Seaview Room</td><td class="r">PHP 25,735.50 net</td><td class="r usd" data-php="25735.50"></td></tr>
+  <tr><td>Premier Seaview Room</td><td class="r">PHP 28,186.50 net</td><td class="r usd" data-php="28186.50"></td></tr>
+  <tr><td>Premier Family Room</td><td class="r">PHP 30,637.50 net</td><td class="r usd" data-php="30637.50"></td></tr>
+  <tr><td>Seaview Suite</td><td class="r">PHP 44,730.75 net</td><td class="r usd" data-php="44730.75"></td></tr>
+  <tr class="extra"><td>Maximum additional (1) adult, per night</td><td class="r">PHP 4,289.25 net</td><td class="r usd" data-php="4289.25"></td></tr>
+ </table></div>
+ <div class="note noprint" style="margin-top:6px">USD amounts are estimates only. Hotel rates are charged in Philippine Peso.</div>
+ <div class="cols" style="margin-top:12px">
+  <div>
+   <b>Room inclusions</b>
+   <ul>
+    <li>Roundtrip land and speedboat transfers from Caticlan for (2) adults and (2) children 11 years old and below</li>
+    <li>Breakfast for (2) adults and (2) children 5 years old and below</li>
+    <li>Wi-Fi, in-room wired internet, and local calls</li>
+    <li>Access to the gym, sauna, steam bath, Jacuzzi, and swimming pool</li>
+   </ul>
+  </div>
+  <div>
+   <b>Rate conditions</b>
+   <ul>
+    <li>Eligible stay dates are May 21–27, 2027, subject to availability, but the room block rate applies only to stays that include <b>May 23–25, 2027</b>.</li>
+    <li>Minimum stay: 2 nights</li>
+    <li>Room capacity: (2) adults and (2) children 11 years old and below</li>
+    <li>No additional discounts apply</li>
+   </ul>
+  </div>
+ </div>
+</div>
+
+<div class="card notice"><b>IMPORTANT:</b> The room block rate applies only to stays that include <b>May 23–25, 2027</b>.</div>
+
+<div class="pbox">
+<div class="card">
+ <h2>Guest Details</h2>
+ <div class="grid">
+  <div><label for="contact">Guest Name</label><input id="contact" placeholder="Full name"></div>
+  <div><label for="email">Guest Email Address</label><input id="email" type="email"></div>
+  <div><label for="mobile">Guest Mobile Number</label><div style="display:flex;gap:6px"><select id="cc" style="width:auto;flex:0 0 auto"><option value="+1">🇺🇸 +1 USA</option><option value="+63">🇵🇭 +63 Philippines</option></select><input id="mobile" type="tel" placeholder="e.g. 555 123 4567" style="flex:1;min-width:0"></div></div>
+  <div class="dates"><div><label for="arr">Check-in date</label><input id="arr" type="date" min="2027-05-21" max="2027-05-25"></div>
+  <div><label for="dep">Check-out date</label><input id="dep" type="date" min="2027-05-22" max="2027-05-27"></div></div>
+ </div>
+ <div id="dateWarn" class="warn"></div>
+</div>
+
+<div class="card">
+ <h2>Rooms</h2>
+ <div id="rooms"></div>
+ <div class="actions noprint"><button type="button" id="addRoom">+ Add another room</button></div>
+</div>
+
+<div class="card">
+ <h2>Other Details</h2>
+ <div class="grid">
+  <div><label>Arrival flight details</label><div class="flt"><div><label for="arrAir">Airline</label><select id="arrAir"><option value="">Select airline</option></select></div><div><label for="arrNo">Flight no.</label><input id="arrNo" placeholder="e.g. 5J 909"></div><div><label for="arrTime">Arrival time</label><input id="arrTime" type="time"></div></div></div>
+  <div><label>Departure flight details</label><div class="flt"><div><label for="depAir">Airline</label><select id="depAir"><option value="">Select airline</option></select></div><div><label for="depNo">Flight no.</label><input id="depNo" placeholder="e.g. 5J 910"></div><div><label for="depTime">Departure time</label><input id="depTime" type="time"></div></div></div>
+  <div class="full note fltnote">Flight details can be sent later. Please email them to the hotel at least 3 days before arrival so your transfers can be arranged.</div>
+  <div class="full"><label for="notes">Additional requests and notes</label><textarea id="notes"></textarea></div>
+ </div>
+</div>
+</div>
+
+<div class="card est">
+ <h2>Estimated Total</h2>
+ <div id="estBody" class="note">Select dates and room types to see an estimate.</div>
+ <div class="note" style="margin-top:6px">Estimate only (net rates, taxes and mandatory charges included). Final confirmation is by the hotel and subject to availability.</div>
+</div>
+
+<div class="actions">
+ <button class="primary" type="button" id="btnPrint">🖨 Print form</button>
+ <button class="primary" type="button" id="btnMail">✉ Open in email app</button>
+ <button type="button" id="btnCopy">Copy email text</button>
+ <button type="button" id="btnShare">Share as PDF</button>
+ <button type="button" id="btnReset">Clear form</button>
+</div>
+</div>
+<div id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+var RATES={"Deluxe Room":23284.50,"Deluxe Seaview Room":25735.50,"Premier Seaview Room":28186.50,"Premier Family Room":30637.50,"Seaview Suite":44730.75};
+var EXTRA=4289.25, TO="reservations.slbo@shangri-la.com", SUBJ="Macabuhay-Aguila Wedding 24MAY2027";
+var roomsEl=document.getElementById("rooms"), count=0;
+function $(i){return document.getElementById(i)}
+function money(n){return "PHP "+n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2})}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;")}
+
+function addRoom(){
+ count++;
+ var opts='<option value="">Select…</option>'+Object.keys(RATES).map(function(k){return '<option value="'+k+'">'+k+'</option>'}).join("");
+ var d=document.createElement("div");d.className="room";
+ d.innerHTML='<h3><span class="rn"></span><button type="button" class="noprint rm">Remove</button></h3>'+
+ '<div class="grid">'+
+ '<div><label>Guest name/s in this room</label><div class="f-guests"></div><div class="noprint"><button type="button" class="sm f-addg">+ Add guest (max 5)</button></div></div>'+
+ '<div><label>Shangri-La Circle Membership Number (if any)</label><input class="f-circle"><div class="note noprint" style="margin-top:3px">No account yet? <a href="https://www.shangri-la.com/en/corporate/shangrilacircle/joingc/" target="_blank" rel="noopener">Join Shangri-La Circle (free)</a></div></div>'+
+ '<div><label>Preferred room type</label><select class="f-type">'+opts+'</select></div>'+
+ '<div><label>Preferred bed type</label><select class="f-bed"><option value="">Select…</option><option>King</option><option>Twin</option><option>No preference</option></select></div>'+
+ '<div class="full" style="display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start"><div class="cnt"><label>Adults (max 3)</label><select class="f-ad"><option>1</option><option selected>2</option><option>3</option></select></div><div class="cnt"><label>Children (11 and below)</label><select class="f-nch"><option value="0">None</option><option value="1">1</option><option value="2">2</option></select></div><div class="f-ages" style="display:none"></div></div>'+
+ '</div>';
+ roomsEl.appendChild(d);
+ var adRow=d.querySelector(".f-ad").parentNode.parentNode,typeBox=d.querySelector(".f-type").parentNode,bedBox=d.querySelector(".f-bed").parentNode;
+ var col=document.createElement("div");
+ typeBox.parentNode.insertBefore(col,typeBox);
+ col.appendChild(typeBox);col.appendChild(bedBox);
+ bedBox.style.marginTop="10px";
+ bedBox.style.display="none";
+ var ts=d.querySelector(".f-type");
+ ts.addEventListener("change",function(){bedBox.style.display=ts.value?"":"none";if(!ts.value)d.querySelector(".f-bed").value="";});
+ adRow.classList.remove("full");
+ adRow.innerHTML='<div class="cnt noprint"><label>Adults</label><input class="f-ad" readonly value="0"></div><div class="cnt noprint"><label>Children</label><input class="f-nch" readonly value="0"></div><div class="warn noprint capw" style="flex-basis:100%"></div>';
+ d.querySelector(".rm").onclick=function(){if(roomsEl.children.length>1){roomsEl.removeChild(d);renum();calc()}};
+ d.addEventListener("input",calc);d.addEventListener("change",calc);
+ var gl=d.querySelector(".f-guests");addGuest(gl);addGuest(gl);
+ gl.addEventListener("input",function(){if(guestVals(gl).length)gl.dataset.touched="1";else delete gl.dataset.touched;});
+ d.querySelector(".f-addg").onclick=function(){var i=addGuest(gl);if(i)i.focus();gl.dataset.touched="1"};
+ syncGuest();
+ renum();calc();
+}
+function renum(){
+ Array.prototype.forEach.call(roomsEl.children,function(r,i){r.querySelector(".rn").textContent="Room "+(i+1)});
+ syncGuest();
+}
+function nights(){
+ var a=$("arr").value,b=$("dep").value;
+ if(!a||!b)return 0;
+ return Math.round((new Date(b)-new Date(a))/86400000);
+}
+function calc(){
+ updCounts();
+ var n=nights(),w=$("dateWarn"),msg="";
+ if($("arr").value&&$("dep").value){
+  if(n<=0)msg="Check-out must be after check-in.";
+  else if(n<2)msg="Minimum stay is 2 nights.";
+  else if($("arr").value<"2027-05-21"||$("dep").value>"2027-05-27")msg="Stay dates must be between May 21 and May 27, 2027.";
+  else if($("arr").value>"2027-05-23"||$("dep").value<"2027-05-25")msg="Your stay must include May 23–25, 2027 for room block rate.";
+ }
+ w.textContent=msg;
+ var total=0,lines=[],ok=n>=2;
+ Array.prototype.forEach.call(roomsEl.children,function(r,i){
+  var t=r.querySelector(".f-type").value,ad=+r.querySelector(".f-ad").value;
+  if(t&&ok){
+   var sub=(RATES[t]+(ad>2?EXTRA:0))*n;total+=sub;
+   lines.push("Room "+(i+1)+": "+t+(ad>2?" + additional adult":"")+" × "+n+" night"+(n>1?"s":"")+" = <b>"+money(sub)+"</b>"+usd(sub));
+  }
+ });
+ $("estBody").innerHTML=lines.length?lines.join("<br>")+"<br><br>Estimated total: <b>"+money(total)+"</b>"+usd(total):"Select dates (min. 2 nights) and room types to see an estimate.";
+}
+function fmtDate(v){
+ if(!v)return "";
+ return new Date(v+"T00:00:00").toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
+}
+function renderAges(d){
+ var n=+d.querySelector(".f-nch").value,box=d.querySelector(".f-ages");
+ var old=Array.prototype.map.call(box.querySelectorAll(".f-age"),function(s){return s.value});
+ var opts='<option value="0">Under 1 year old</option>';
+ for(var a=1;a<=11;a++)opts+='<option value="'+a+'">'+a+(a===1?' year old':' years old')+'</option>';
+ box.innerHTML="";
+ if(n){
+  var w=document.createElement("div");w.style.cssText="width:150px";
+  var g="";
+  for(var i=0;i<n;i++)g+='<select class="f-age"><option value="">Child '+(i+1)+' age</option>'+opts+'</select>';
+  w.innerHTML='<label>Ages</label><div class="agegrp">'+g+'</div>';
+  box.appendChild(w);
+  Array.prototype.forEach.call(w.querySelectorAll(".f-age"),function(s,k){if(old[k])s.value=old[k]});
+ }
+ box.style.display=n?"contents":"none";
+}
+function childText(r){
+ var rows=Array.prototype.filter.call(r.querySelector(".f-guests").children,function(d){return d.querySelector(".g-chk").checked});
+ if(!rows.length)return "None";
+ return rows.length+" ("+rows.map(function(d){
+  var a=d.querySelector(".g-age").value,n=d.querySelector("input").value.trim()||"child";
+  return n+": "+(a===""?"age not selected":a==="0"?"under 1":a+" yr"+(a==="1"?"":"s"));
+ }).join(", ")+")";
+}
+function childTextOld(r){
+ var n=+r.querySelector(".f-nch").value;if(!n)return "None";
+ var a=Array.prototype.map.call(r.querySelectorAll(".f-age"),function(s){
+  return s.value===""?"age not selected":(s.value==="0"?"under 1":s.value+" yr"+(s.value==="1"?"":"s"));
+ });
+ return n+" ("+a.join(", ")+")";
+}
+function flightText(p){
+ var a=$(p+"Air").value,n=$(p+"No").value.trim(),t=$(p+"Time").value,o=[];
+ if(a)o.push(a);
+ if(n)o.push("Flight "+n);
+ if(t){var h=+t.slice(0,2);o.push((h%12||12)+":"+t.slice(3,5)+" "+(h<12?"AM":"PM"))}
+ return o.join(", ");
+}
+function nameLines(v,ind){
+ var a=v.split("\n").map(function(x){return x.trim()}).filter(Boolean);
+ return a.length?"\n"+a.map(function(x){return ind+x}).join("\n"):"";
+}
+function emailText(){
+ var L=[],n=nights();
+ L.push("Hello,","","Please find my room reservation request for the Macabuhay-Aguila Wedding below.","");
+ L.push("Guest Name: "+$("contact").value.trim());
+ L.push("Guest Email Address: "+$("email").value);
+ var mob=$("mobile").value.trim();
+ L.push("Guest Mobile Number: "+(mob?(mob.charAt(0)==="+"?mob:$("cc").value+" "+mob.replace(/^0+/,"")):""));
+ L.push("Stay Dates: "+(fmtDate($("arr").value)||"")+(($("dep").value)?" to "+fmtDate($("dep").value)+(n>0?" ("+n+" nights)":""):""));
+ L.push("");
+ Array.prototype.forEach.call(roomsEl.children,function(r,i){
+  L.push("ROOM "+(i+1));
+  L.push("  Guest name/s:"+nameLines(guestLines(r.querySelector(".f-guests")).join("\n"),"    "));
+  L.push("  Shangri-La Circle Membership Number: "+r.querySelector(".f-circle").value);
+  L.push("  Preferred room type: "+r.querySelector(".f-type").value);
+  L.push("  Preferred bed type: "+r.querySelector(".f-bed").value);
+  L.push("  Number of adults per room: "+r.querySelector(".f-ad").value);
+  L.push("  Number & age of children per room: "+childText(r));
+  L.push("");
+ });
+ L.push("Additional requests and notes: "+$("notes").value);
+ L.push("Arrival flight details: "+flightText("arr"));
+ L.push("Departure flight details: "+flightText("dep"));
+ L.push("","Thank you.");
+ return L.join("\n");
+}
+function toast(m){var t=$("toast");t.textContent=m;t.style.display="block";setTimeout(function(){t.style.display="none"},2500)}
+$("btnPrint").onclick=function(){window.print()};
+$("btnMail").onclick=function(){
+ var url="mailto:"+TO+"?subject="+encodeURIComponent(SUBJ)+"&body="+encodeURIComponent(emailText());
+ try{window.open(url,"_top")}catch(e){}
+ toast("If nothing opened, use “Copy email text”.");
+};
+$("btnCopy").onclick=function(){
+ var txt="To: "+TO+"\nSubject: "+SUBJ+"\n\n"+emailText();
+ function fallback(){var ta=document.createElement("textarea");ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");toast("Copied to clipboard")}catch(e){toast("Copy failed – select text manually")}document.body.removeChild(ta)}
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){toast("Copied to clipboard")},fallback)}else fallback();
+};
+$("btnShare").onclick=function(){
+ try{
+  var J=window.jspdf&&window.jspdf.jsPDF;
+  if(!J){toast("PDF tool did not load. Use Print form, then Save as PDF.");return}
+  var doc=new J({unit:"pt",format:"a4"});
+  doc.setFontSize(11);
+  var lines=doc.splitTextToSize("Hotel Reservation Form - Shangri-La Boracay\nMacabuhay-Aguila Wedding 24MAY2027\n\n"+emailText(),500);
+  var y=50;
+  lines.forEach(function(l){if(y>790){doc.addPage();y=50}doc.text(l,48,y);y+=14});
+  var f=new File([doc.output("blob")],"Macabuhay-Aguila-Wedding-Room-Reservation.pdf",{type:"application/pdf"});
+  if(navigator.canShare&&navigator.canShare({files:[f]})){
+   navigator.share({files:[f],title:SUBJ,text:"To: "+TO}).catch(function(){});
+  }else toast("Sharing is not supported here. Use Print form, then Save as PDF.");
+ }catch(e){toast("Could not create the PDF. Use Print form, then Save as PDF.")}
+};
+$("btnReset").onclick=function(){
+ if(!confirm("Clear all entries?"))return;
+ ["contact","email","mobile","arr","dep","notes","arrAir","arrNo","arrTime","depAir","depNo","depTime"].forEach(function(i){$(i).value=""});
+ roomsEl.innerHTML="";count=0;addRoom();growAll();
+};
+function addGuest(list){
+ if(list.children.length>=5)return null;
+ var d=document.createElement("div");d.className="grw";
+ var i=document.createElement("input");i.className="g-name";i.placeholder="Guest full name";
+ var s=document.createElement("label");s.className="chk";s.innerHTML='<input type="checkbox" class="g-chk"> Child';
+ var ag=document.createElement("select");ag.className="g-age";ag.style.display="none";
+ var ao='<option value="">Age?</option><option value="0">Under 1</option>';
+ for(var k=1;k<=11;k++)ao+='<option value="'+k+'">'+k+(k===1?' yr':' yrs')+'</option>';
+ ag.innerHTML=ao;
+ var cb=s.querySelector("input");cb.onchange=function(){ag.style.display=cb.checked?"":"none";if(!cb.checked)ag.value="";};
+ var b=document.createElement("button");b.type="button";b.className="noprint x";b.textContent="✕";b.title="Remove";
+ b.onclick=function(){
+  if(list.children.length>1){list.removeChild(d);if(list.id==="names")syncGuest();else list.dataset.touched="1";updGuestBtns();}
+ };
+ var n=document.createElement("span");n.className="gn";
+ d.appendChild(n);d.appendChild(i);d.appendChild(s);d.appendChild(ag);d.appendChild(b);list.appendChild(d);updGuestBtns();return i;
+}
+function guestVals(list){
+ return Array.prototype.map.call(list.querySelectorAll("input.g-name"),function(x){return x.value.trim()}).filter(Boolean);
+}
+function guestLines(list){
+ return Array.prototype.map.call(list.children,function(d){
+  var n=d.querySelector("input.g-name").value.trim(),c=d.querySelector(".g-chk").checked,a=d.querySelector(".g-age").value;
+  return n?n+" ("+(c?"Child, "+(a===""?"age not selected":a==="0"?"under 1":a+" yr"+(a==="1"?"":"s")):"Adult")+")":"";
+ }).filter(Boolean);
+}
+function syncGuest(){
+ var r=roomsEl.children[0];if(!r)return;
+ var l=r.querySelector(".f-guests");
+ var v=Array.prototype.map.call($("names").querySelectorAll("input.g-name"),function(x){return x.value});
+ var t=Array.prototype.map.call($("names").querySelectorAll(".g-chk"),function(x){return x.checked});
+ var n=Math.max(1,v.length);
+ while(l.children.length<n)addGuest(l);
+ while(l.children.length>n)l.removeChild(l.lastChild);
+ Array.prototype.forEach.call(l.querySelectorAll("input.g-name"),function(x,i){x.value=v[i]||""});
+ var a=Array.prototype.map.call($("names").querySelectorAll(".g-age"),function(x){return x.value});
+ Array.prototype.forEach.call(l.querySelectorAll(".g-chk"),function(x,i){x.checked=!!t[i];var g=x.parentNode.parentNode.querySelector(".g-age");g.value=a[i]||"";g.style.display=x.checked?"":"none"});
+ updGuestBtns();lockFirst();
+}
+function lockFirst(){
+ Array.prototype.forEach.call(roomsEl.children,function(r,i){
+  var l=r.querySelector(".f-guests"),a=r.querySelector(".f-addg");
+  Array.prototype.forEach.call(l.querySelectorAll("input"),function(x){x.readOnly=(i===0)});
+  Array.prototype.forEach.call(l.querySelectorAll("select,.g-chk"),function(x){x.disabled=(i===0)});
+  Array.prototype.forEach.call(l.querySelectorAll("button"),function(x){x.style.display=(i===0)?"none":""});
+  if(a)a.style.display=(i===0)?"none":"";
+ });
+}
+function numberGuests(l){
+ Array.prototype.forEach.call(l.children,function(d,i){var s=d.querySelector(".gn");if(s)s.textContent=(i+1)+"."});
+}
+function updCounts(){
+ Array.prototype.forEach.call(roomsEl.children,function(r){
+  var l=r.querySelector(".f-guests");if(!l)return;
+  var ad=0,ch=0;
+  Array.prototype.forEach.call(l.children,function(d){if(!d.querySelector("input.g-name").value.trim())return;if(d.querySelector(".g-chk").checked)ch++;else ad++;});
+  var fa=r.querySelector(".f-ad"),fc=r.querySelector(".f-nch"),w=r.querySelector(".capw");
+  if(fa)fa.value=ad;
+  if(fc)fc.value=ch;
+  if(w)w.textContent=(ad>3||ch>2)?"Room capacity is 2 adults and 2 children, plus 1 additional adult.":"";
+ });
+}
+function updGuestBtns(){
+ updCounts();
+ var b=$("addGuest");if(b)b.disabled=$("names").children.length>=5;
+ numberGuests($("names"));
+ Array.prototype.forEach.call(roomsEl.children,function(r){
+  var a=r.querySelector(".f-addg"),l=r.querySelector(".f-guests");
+  if(a&&l)a.disabled=l.children.length>=5;
+  if(l)numberGuests(l);
+ });
+}
+$("contact").addEventListener("input",syncGuest);
+$("addRoom").onclick=addRoom;
+function usd(n){
+ var r=parseFloat($("fx").value);
+ return r>0?" <span class=\"usdtxt\">(≈ USD $"+(n/r).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2})+")</span>":"";
+}
+function fillUsd(){
+ var r=parseFloat($("fx").value);
+ Array.prototype.forEach.call(document.querySelectorAll(".usd"),function(c){
+  var p=parseFloat(c.getAttribute("data-php"));
+  c.textContent=r>0?"≈ USD $"+(p/r).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}):"";
+ });
+ calc();
+}
+$("fx").addEventListener("input",fillUsd);
+fillUsd();
+
+/* Fit the printout on one page */
+var printRules=[];
+function setPrintMedia(on){
+ try{
+  Array.prototype.forEach.call(document.styleSheets,function(s){
+   Array.prototype.forEach.call(s.cssRules,function(r){
+    if(r.type===4&&r.media&&r.media.mediaText===(on?"print":"all")&&(on?true:printRules.indexOf(r)>-1)){
+     if(on)printRules.push(r);
+     r.media.mediaText=on?"all":"print";
+    }
+   });
+  });
+  if(!on)printRules=[];
+ }catch(e){}
+}
+window.addEventListener("beforeprint",function(){
+ var w=document.querySelector(".wrap"),PW=708,PH=945;
+ try{
+  w.style.zoom="1";w.style.maxWidth="none";w.style.width=PW+"px";
+  setPrintMedia(true);
+  growAll();
+  var h=w.offsetHeight;
+  setPrintMedia(false);
+  var z=Math.min(1,PH/h);
+  w.style.zoom=z;w.style.width=(PW/z)+"px";
+ }catch(e){}
+});
+function grow(el){el.style.height="auto";el.style.height=(el.scrollHeight+2)+"px"}
+function growAll(){Array.prototype.forEach.call(document.querySelectorAll("textarea"),grow)}
+document.addEventListener("input",function(e){if(e.target.tagName==="TEXTAREA")grow(e.target)});
+window.addEventListener("afterprint",function(){
+ growAll();
+ var w=document.querySelector(".wrap");
+ w.style.zoom="";w.style.maxWidth="";w.style.width="";
+});
+["arr","dep"].forEach(function(i){$(i).addEventListener("change",calc)});
+["Philippine Airlines (PR)","Cebu Pacific (5J)","Cebgo (DG)","AirAsia Philippines (Z2)","AirSWIFT (T6)","Other / Charter"].forEach(function(a){
+ ["arrAir","depAir"].forEach(function(id){var o=document.createElement("option");o.textContent=a;$(id).appendChild(o)});
+});
+["arr","dep"].forEach(function(p){
+ var sel=$(p+"Air"),no=$(p+"No");
+ sel.addEventListener("change",function(){
+  var m=sel.value.match(/\(([A-Z0-9]{2})\)/),code=m?m[1]:"";
+  var rest=no.value.replace(/^(PR|5J|DG|Z2|T6)\s*/i,"");
+  no.value=(code?code+" ":"")+rest;
+  if(code)no.focus();
+ });
+});
+function syncGuest(){
+ var r=roomsEl.children[0];if(!r)return;
+ var f=r.querySelector(".f-guests").children[0];
+ if(f)f.querySelector("input.g-name").value=$("contact").value;
+ updGuestBtns();lockFirst();
+}
+function lockFirst(){
+ Array.prototype.forEach.call(roomsEl.children,function(r,i){
+  var l=r.querySelector(".f-guests");
+  Array.prototype.forEach.call(l.children,function(d,j){
+   var lock=(i===0&&j===0);
+   d.querySelector("input.g-name").readOnly=lock;
+   d.querySelector(".g-chk").disabled=lock;
+   d.querySelector(".chk").style.visibility=lock?"hidden":"visible";
+   d.querySelector("button").style.display=lock?"none":"";
+  });
+ });
+}
+function updGuestBtns(){
+ updCounts();
+ Array.prototype.forEach.call(roomsEl.children,function(r){
+  var a=r.querySelector(".f-addg"),l=r.querySelector(".f-guests");
+  if(a&&l)a.disabled=l.children.length>=5;
+  if(l)numberGuests(l);
+ });
+}
+addRoom();
+</script>
+</body>
+</html>
