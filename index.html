@@ -52,13 +52,26 @@ a{color:var(--accent)}
 .notice{border:2px solid var(--accent);border-left-width:6px;font-size:1.02rem}
 .agegrp{display:flex;flex-direction:column;gap:4px;border:1px solid var(--line);border-radius:6px;padding:4px;background:var(--bg)}
 .agegrp select{width:100%}
-@media(min-width:641px){.nmcol{grid-row:span 2}}
-.extra td{font-weight:700;color:var(--accent);border-top:2px solid var(--accent)}
+@media(min-width:641px){.nmcol,.gcol{grid-row:span 2}}
+@media(min-width:641px){.x2{width:50%;min-width:320px}}
+.extra td{font-size:.85em;font-weight:700;color:var(--accent)}
 .taxinc{font-weight:700;font-size:.85em;color:var(--accent);margin:0 0 8px}
 .cnt{width:150px}
 .dates{display:flex;gap:8px}
 .dates>div{flex:1;min-width:0}
 .cnt select,.agegrp select{padding:4px 6px;font-size:.85rem}
+.stp{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:640px){.stp{grid-template-columns:1fr}}
+.stp>div{border:1px solid var(--line);border-radius:8px;padding:10px;background:var(--bg);font:.88rem/1.4 system-ui,sans-serif}
+.nb{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-weight:700;margin-right:6px}
+.agetxt{display:none}
+.addon{margin-top:8px;color:var(--accent);font-weight:600}
+.addon .usd{font-weight:400;color:var(--mute);font-size:.85em}
+.ptxt{display:none}
+#notes{min-height:44px;font-size:.8rem}
+.bad{border-color:var(--warn)!important;box-shadow:0 0 0 1px var(--warn)}
+.estt{width:100%;max-width:520px}
+.estt .tot td{border-top:2px solid var(--accent)}
 .gn{flex:0 0 auto;align-self:center;width:1.8em;text-align:right;color:var(--mute);font-family:system-ui,sans-serif;font-variant-numeric:tabular-nums}
 input[readonly]{opacity:.85}
 .room{border:1px dashed var(--line);border-radius:8px;padding:12px;margin-bottom:12px}
@@ -104,7 +117,13 @@ button.primary{background:var(--accent);color:var(--accent-ink)}
  .est,.est .note{font-size:8px}
  .est b{font-size:8.5px}
  .est h2{font-size:.7rem;margin-bottom:2px}
+ .estt{width:50%;max-width:none}
  .fltnote{font-size:8.5px}
+ #notes{font-size:9px;min-height:0}
+ #notes{display:none!important}
+ .ptxt{display:block;border-bottom:1px solid #000;min-height:13px;font-size:9px;line-height:1.3;white-space:pre-wrap;padding:0 0 1px}
+ .tbcol{display:flex;gap:8px}
+ .tbcol>div{flex:1;min-width:0;margin-top:0!important}
  textarea.nm{min-height:20px}
  .agegrp{border:none;padding:0;background:transparent}
  .grw{max-width:none}
@@ -112,9 +131,12 @@ button.primary{background:var(--accent);color:var(--accent-ink)}
  #cc{width:auto!important}
  .grw select{width:105px!important}
  .grw .g-age{width:80px!important}
- .chk{color:#000;font-size:9px}
- .flt{display:grid!important;grid-template-columns:1.5fr 1fr 1.3fr;gap:8px;align-items:end}
- .flt input[type=time]{min-width:95px;font-size:10px!important}
+ .chk,.g-age{display:none!important}
+ .bad{box-shadow:none!important}
+ .agetxt{display:inline;align-self:flex-end;font-size:10px;color:#000}
+ .flt{display:grid!important;grid-template-columns:1.7fr 1fr 1fr;gap:4px;align-items:end}
+ .flt select,.flt input{font-size:9.5px!important}
+ .flt input[type=time]{min-width:80px;font-size:9.5px!important}
  .flt input::-webkit-datetime-edit-ampm-field{padding:0}
  .flt>div{min-width:0}
  .flt label{white-space:nowrap;overflow:hidden;line-height:11px;height:11px}
@@ -141,19 +163,20 @@ button.primary{background:var(--accent);color:var(--accent-ink)}
 </header>
 
 <div class="card to noprint">
- <b>To:</b> reservations.slbo@shangri-la.com<br>
+ <b>To:</b> <a href="mailto:reservations.slbo@shangri-la.com">reservations.slbo@shangri-la.com</a><br>
  <b>Subject:</b> Macabuhay-Aguila Wedding 24MAY2027<br>
  <b>Booking deadline:</b> January 8, 2027
 </div>
 
 <div class="card noprint">
  <h2>How to Reserve</h2>
- <ol style="margin:4px 0;padding-left:22px">
-  <li><b>Fill in</b> this form.</li>
-  <li>Click <b>“Print form”</b> and choose <b>Save as PDF</b>. On a phone, tap <b>“Share as PDF”</b> instead.</li>
-  <li>Click <b>“Open in email app”</b>, attach the PDF, and press <b>Send</b>.</li>
- </ol>
- <div class="note">Email didn’t open? Click “Copy email text” and paste it into a new email to reservations.slbo@shangri-la.com. Send by <b>January 8, 2027</b>. Payment is arranged directly with the hotel.</div>
+ <div class="note" style="margin:0 0 8px">Fill in the form below, then:</div>
+ <div class="stp">
+  <div><span class="nb">1</span><b>Save as PDF</b><br>Click “Print form” and choose Save as PDF. On a phone, tap “Share as PDF”.</div>
+  <div><span class="nb">2</span><b>Open the email</b><br>Click “Open in email app”. It is already addressed to the hotel.</div>
+  <div><span class="nb">3</span><b>Attach and send</b><br>Attach the PDF and press Send before <b>January 8, 2027</b>.</div>
+ </div>
+ <div class="note" style="margin-top:8px">Email didn’t open? Click “Copy email text” and paste it into a new email to <a href="mailto:reservations.slbo@shangri-la.com">reservations.slbo@shangri-la.com</a>.</div>
 </div>
 
 <div class="card">
@@ -166,7 +189,6 @@ button.primary{background:var(--accent);color:var(--accent-ink)}
   <tr><td>Premier Seaview Room</td><td class="r">PHP 28,186.50 net</td><td class="r usd" data-php="28186.50"></td></tr>
   <tr><td>Premier Family Room</td><td class="r">PHP 30,637.50 net</td><td class="r usd" data-php="30637.50"></td></tr>
   <tr><td>Seaview Suite</td><td class="r">PHP 44,730.75 net</td><td class="r usd" data-php="44730.75"></td></tr>
-  <tr class="extra"><td>Maximum additional (1) adult, per night</td><td class="r">PHP 4,289.25 net</td><td class="r usd" data-php="4289.25"></td></tr>
  </table></div>
  <div class="note noprint" style="margin-top:6px">USD amounts are estimates only. Hotel rates are charged in Philippine Peso.</div>
  <div class="cols" style="margin-top:12px">
@@ -182,20 +204,20 @@ button.primary{background:var(--accent);color:var(--accent-ink)}
   <div>
    <b>Rate conditions</b>
    <ul>
-    <li>Eligible stay dates are May 21–27, 2027, subject to availability, but the room block rate applies only to stays that include <b>May 23–25, 2027</b>.</li>
+    <li>Eligible stay dates: May 21–27, 2027, subject to availability. Your stay must include <b>May 23–25, 2027</b> to qualify for the room block rate.</li>
     <li>Minimum stay: 2 nights</li>
-    <li>Room capacity: (2) adults and (2) children 11 years old and below</li>
+    <li>Room capacity: 2 adults and 2 children 11 years old and below.</li>
+    <li>Extra adult (max. 1 per room): PHP 4,289.25 net per night.</li>
     <li>No additional discounts apply</li>
    </ul>
   </div>
  </div>
 </div>
 
-<div class="card notice"><b>IMPORTANT:</b> The room block rate applies only to stays that include <b>May 23–25, 2027</b>.</div>
-
 <div class="pbox">
 <div class="card">
  <h2>Guest Details</h2>
+ <div class="note noprint" style="margin:-4px 0 8px">All fields are required except Shangri-La Circle membership number, flight details and additional requests.</div>
  <div class="grid">
   <div><label for="contact">Guest Name</label><input id="contact" placeholder="Full name"></div>
   <div><label for="email">Guest Email Address</label><input id="email" type="email"></div>
@@ -217,8 +239,8 @@ button.primary{background:var(--accent);color:var(--accent-ink)}
  <div class="grid">
   <div><label>Arrival flight details</label><div class="flt"><div><label for="arrAir">Airline</label><select id="arrAir"><option value="">Select airline</option></select></div><div><label for="arrNo">Flight no.</label><input id="arrNo" placeholder="e.g. 5J 909"></div><div><label for="arrTime">Arrival time</label><input id="arrTime" type="time"></div></div></div>
   <div><label>Departure flight details</label><div class="flt"><div><label for="depAir">Airline</label><select id="depAir"><option value="">Select airline</option></select></div><div><label for="depNo">Flight no.</label><input id="depNo" placeholder="e.g. 5J 910"></div><div><label for="depTime">Departure time</label><input id="depTime" type="time"></div></div></div>
-  <div class="full note fltnote">Flight details can be sent later. Please email them to the hotel at least 3 days before arrival so your transfers can be arranged.</div>
-  <div class="full"><label for="notes">Additional requests and notes</label><textarea id="notes"></textarea></div>
+  <div class="full note fltnote">Flight details can be sent later. Please email the hotel at least 3 days before arrival for transfer arrangements.</div>
+  <div class="full"><label for="notes">Additional requests and notes</label><textarea id="notes"></textarea><div class="ptxt" id="notesP"></div></div>
  </div>
 </div>
 </div>
@@ -226,15 +248,26 @@ button.primary{background:var(--accent);color:var(--accent-ink)}
 <div class="card est">
  <h2>Estimated Total</h2>
  <div id="estBody" class="note">Select dates and room types to see an estimate.</div>
- <div class="note" style="margin-top:6px">Estimate only (net rates, taxes and mandatory charges included). Final confirmation is by the hotel and subject to availability.</div>
+ <div class="note" style="margin-top:6px">Estimate only; taxes and mandatory charges included.<br>Final confirmation by the hotel, subject to availability.</div>
 </div>
 
+<div id="errBox" class="warn noprint" style="margin:0 0 8px;font-weight:600"></div>
 <div class="actions">
  <button class="primary" type="button" id="btnPrint">🖨 Print form</button>
  <button class="primary" type="button" id="btnMail">✉ Open in email app</button>
  <button type="button" id="btnCopy">Copy email text</button>
  <button type="button" id="btnShare">Share as PDF</button>
  <button type="button" id="btnReset">Clear form</button>
+</div>
+<div style="height:12px"></div>
+<div class="card noprint">
+ <h2>Ready to send? 3 quick steps</h2>
+ <div class="stp">
+  <div><span class="nb">1</span><b>Save as PDF</b><br>Click “Print form” and choose Save as PDF. On a phone, tap “Share as PDF”.</div>
+  <div><span class="nb">2</span><b>Open the email</b><br>Click “Open in email app”. It is already addressed to the hotel.</div>
+  <div><span class="nb">3</span><b>Attach and send</b><br>Attach the PDF and press Send before <b>January 8, 2027</b>.</div>
+ </div>
+ <div class="note" style="margin-top:8px">Email didn’t open? Click “Copy email text” and paste it into a new email to <a href="mailto:reservations.slbo@shangri-la.com">reservations.slbo@shangri-la.com</a>.</div>
 </div>
 </div>
 <div id="toast"></div>
@@ -255,14 +288,14 @@ function addRoom(){
  d.innerHTML='<h3><span class="rn"></span><button type="button" class="noprint rm">Remove</button></h3>'+
  '<div class="grid">'+
  '<div><label>Guest name/s in this room</label><div class="f-guests"></div><div class="noprint"><button type="button" class="sm f-addg">+ Add guest (max 5)</button></div></div>'+
- '<div><label>Shangri-La Circle Membership Number (if any)</label><input class="f-circle"><div class="note noprint" style="margin-top:3px">No account yet? <a href="https://www.shangri-la.com/en/corporate/shangrilacircle/joingc/" target="_blank" rel="noopener">Join Shangri-La Circle (free)</a></div></div>'+
+ '<div><label>Shangri-La Circle Membership Number (if any)</label><input class="f-circle"><div class="warn noprint cw"></div><div class="note noprint" style="margin-top:3px">No account yet? <a href="https://www.shangri-la.com/en/corporate/shangrilacircle/joingc/" target="_blank" rel="noopener">Join Shangri-La Circle (free)</a></div></div>'+
  '<div><label>Preferred room type</label><select class="f-type">'+opts+'</select></div>'+
  '<div><label>Preferred bed type</label><select class="f-bed"><option value="">Select…</option><option>King</option><option>Twin</option><option>No preference</option></select></div>'+
  '<div class="full" style="display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start"><div class="cnt"><label>Adults (max 3)</label><select class="f-ad"><option>1</option><option selected>2</option><option>3</option></select></div><div class="cnt"><label>Children (11 and below)</label><select class="f-nch"><option value="0">None</option><option value="1">1</option><option value="2">2</option></select></div><div class="f-ages" style="display:none"></div></div>'+
  '</div>';
  roomsEl.appendChild(d);
  var adRow=d.querySelector(".f-ad").parentNode.parentNode,typeBox=d.querySelector(".f-type").parentNode,bedBox=d.querySelector(".f-bed").parentNode;
- var col=document.createElement("div");
+ var col=document.createElement("div");col.className="tbcol";
  typeBox.parentNode.insertBefore(col,typeBox);
  col.appendChild(typeBox);col.appendChild(bedBox);
  bedBox.style.marginTop="10px";
@@ -271,6 +304,8 @@ function addRoom(){
  ts.addEventListener("change",function(){bedBox.style.display=ts.value?"":"none";if(!ts.value)d.querySelector(".f-bed").value="";});
  adRow.classList.remove("full");
  adRow.innerHTML='<div class="cnt noprint"><label>Adults</label><input class="f-ad" readonly value="0"></div><div class="cnt noprint"><label>Children</label><input class="f-nch" readonly value="0"></div><div class="warn noprint capw" style="flex-basis:100%"></div>';
+ var cw=adRow.querySelector(".capw");adRow.style.display="none";col.parentNode.insertBefore(cw,adRow);cw.style.flexBasis="";
+ d.querySelector(".f-guests").parentNode.className="gcol";
  d.querySelector(".rm").onclick=function(){if(roomsEl.children.length>1){roomsEl.removeChild(d);renum();calc()}};
  d.addEventListener("input",calc);d.addEventListener("change",calc);
  var gl=d.querySelector(".f-guests");addGuest(gl);addGuest(gl);
@@ -295,18 +330,20 @@ function calc(){
   if(n<=0)msg="Check-out must be after check-in.";
   else if(n<2)msg="Minimum stay is 2 nights.";
   else if($("arr").value<"2027-05-21"||$("dep").value>"2027-05-27")msg="Stay dates must be between May 21 and May 27, 2027.";
-  else if($("arr").value>"2027-05-23"||$("dep").value<"2027-05-25")msg="Your stay must include May 23–25, 2027 for room block rate.";
+  else if($("arr").value>"2027-05-23"||$("dep").value<"2027-05-25")msg="Your stay must include May 23–25, 2027 to qualify for the room block rate.";
  }
  w.textContent=msg;
- var total=0,lines=[],ok=n>=2;
+ var total=0,rows=[],ok=datesOk();
  Array.prototype.forEach.call(roomsEl.children,function(r,i){
   var t=r.querySelector(".f-type").value,ad=+r.querySelector(".f-ad").value;
   if(t&&ok){
-   var sub=(RATES[t]+(ad>2?EXTRA:0))*n;total+=sub;
-   lines.push("Room "+(i+1)+": "+t+(ad>2?" + additional adult":"")+" × "+n+" night"+(n>1?"s":"")+" = <b>"+money(sub)+"</b>"+usd(sub));
+   var base=RATES[t]*n,extra=ad>2?EXTRA*n:0;total+=base+extra;
+   var nt=n+" night"+(n>1?"s":"");
+   rows.push('<tr><td>Room '+(i+1)+': '+t+'</td><td class="r">'+money(RATES[t])+' \u00d7 '+nt+'</td><td class="r">'+money(base)+'</td></tr>');
+   if(extra)rows.push('<tr><td>&nbsp;&nbsp;Additional adult</td><td class="r">'+money(EXTRA)+' \u00d7 '+nt+'</td><td class="r">'+money(extra)+'</td></tr>');
   }
  });
- $("estBody").innerHTML=lines.length?lines.join("<br>")+"<br><br>Estimated total: <b>"+money(total)+"</b>"+usd(total):"Select dates (min. 2 nights) and room types to see an estimate.";
+ $("estBody").innerHTML=rows.length?'<table class="estt">'+rows.join("")+'<tr class="tot"><td colspan="2"><b>Estimated total</b></td><td class="r"><b>'+money(total)+'</b>'+usd(total)+'</td></tr></table>':(ok?"Select room types to see an estimate.":"Enter valid stay dates that include May 23–25, 2027 to see an estimate.");
 }
 function fmtDate(v){
  if(!v)return "";
@@ -380,18 +417,80 @@ function emailText(){
  return L.join("\n");
 }
 function toast(m){var t=$("toast");t.textContent=m;t.style.display="block";setTimeout(function(){t.style.display="none"},2500)}
-$("btnPrint").onclick=function(){window.print()};
+function datesOk(){
+ var a=$("arr").value,b=$("dep").value;
+ return !!a&&!!b&&nights()>=2&&a>="2027-05-21"&&b<="2027-05-27"&&a<="2027-05-23"&&b>="2027-05-25";
+}
+function validate(){
+ var bad=[],first=null;
+ function chk(el,ok,msg){
+  if(!el)return;
+  el.classList.toggle("bad",!ok);
+  if(!ok){bad.push(msg);if(!first)first=el;}
+ }
+ chk($("contact"),$("contact").value.trim()!=="","guest name");
+ chk($("email"),/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($("email").value.trim()),"valid email address");
+ chk($("mobile"),$("mobile").value.replace(/\D/g,"").length>=7,"mobile number");
+ chk($("arr"),!!$("arr").value,"check-in date");
+ chk($("dep"),!!$("dep").value,"check-out date");
+ if($("arr").value&&$("dep").value&&!datesOk()){
+  chk($("arr"),false,"stay dates (2 nights minimum, May 21\u201327, and must include May 23\u201325, 2027)");
+  chk($("dep"),false,"");
+  bad=bad.filter(Boolean);
+ }
+ Array.prototype.forEach.call(roomsEl.children,function(r,i){
+  var k="Room "+(i+1)+" ";
+  var rows=r.querySelector(".f-guests").children;
+  if(i>0){var g=rows[0].querySelector("input.g-name");chk(g,g.value.trim()!=="",k+"guest name");}
+  var t=r.querySelector(".f-type");chk(t,t.value!=="",k+"room type");
+  if(t.value){var b=r.querySelector(".f-bed");chk(b,b.value!=="",k+"bed type");}
+  Array.prototype.forEach.call(rows,function(d,j){
+   var c=d.querySelector(".g-chk"),a=d.querySelector(".g-age");
+   if(c.checked)chk(a,a.value!=="",k+"child age (guest "+(j+1)+")");
+  });
+ });
+ var box=$("errBox");
+ if(checkDup()){bad.push("a Shangri-La Circle number is used in more than one room");if(!first)first=document.querySelector(".f-circle.bad");}
+ if(bad.length){
+  box.textContent="Please complete: "+bad.join(", ")+".";
+  if(first){first.scrollIntoView({behavior:"smooth",block:"center"});if(first.focus)first.focus();}
+  return false;
+ }
+ box.textContent="";
+ return true;
+}
+document.addEventListener("input",function(e){if(e.target&&e.target.classList)e.target.classList.remove("bad");});
+document.addEventListener("change",function(e){if(e.target&&e.target.classList)e.target.classList.remove("bad");});
+function checkDup(){
+ var m={},dup=false;
+ var els=Array.prototype.slice.call(document.querySelectorAll(".f-circle"));
+ els.forEach(function(e){var v=e.value.trim().toLowerCase();if(v){(m[v]=m[v]||[]).push(e);}});
+ els.forEach(function(e){
+  var v=e.value.trim().toLowerCase(),isDup=!!v&&m[v].length>1;
+  e.classList.toggle("bad",isDup);
+  var w=e.parentNode.querySelector(".cw");
+  if(w)w.textContent=isDup?"This Shangri-La Circle number is already used in another room. Each number can only be used once.":"";
+  if(isDup)dup=true;
+ });
+ return dup;
+}
+document.addEventListener("input",function(e){if(e.target&&e.target.classList&&e.target.classList.contains("f-circle"))checkDup();});
+document.addEventListener("change",function(e){if(e.target&&e.target.classList&&e.target.classList.contains("f-circle"))checkDup();});
+$("btnPrint").onclick=function(){if(!validate())return;window.print()};
 $("btnMail").onclick=function(){
+ if(!validate())return;
  var url="mailto:"+TO+"?subject="+encodeURIComponent(SUBJ)+"&body="+encodeURIComponent(emailText());
  try{window.open(url,"_top")}catch(e){}
  toast("If nothing opened, use “Copy email text”.");
 };
 $("btnCopy").onclick=function(){
+ if(!validate())return;
  var txt="To: "+TO+"\nSubject: "+SUBJ+"\n\n"+emailText();
  function fallback(){var ta=document.createElement("textarea");ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");toast("Copied to clipboard")}catch(e){toast("Copy failed – select text manually")}document.body.removeChild(ta)}
  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){toast("Copied to clipboard")},fallback)}else fallback();
 };
 $("btnShare").onclick=function(){
+ if(!validate())return;
  try{
   var J=window.jspdf&&window.jspdf.jsPDF;
   if(!J){toast("PDF tool did not load. Use Print form, then Save as PDF.");return}
@@ -420,13 +519,16 @@ function addGuest(list){
  var ao='<option value="">Age?</option><option value="0">Under 1</option>';
  for(var k=1;k<=11;k++)ao+='<option value="'+k+'">'+k+(k===1?' yr':' yrs')+'</option>';
  ag.innerHTML=ao;
- var cb=s.querySelector("input");cb.onchange=function(){ag.style.display=cb.checked?"":"none";if(!cb.checked)ag.value="";};
+ var cb=s.querySelector("input");var at=document.createElement("span");at.className="agetxt";
+ function ut(){var v=ag.value;at.textContent=cb.checked?"(Child"+(v!==""?", "+(v==="0"?"under 1 year old":v+(v==="1"?" year old":" years old")):"")+")":"";}
+ cb.onchange=function(){ag.style.display=cb.checked?"":"none";if(!cb.checked)ag.value="";ut();};
+ ag.onchange=ut;
  var b=document.createElement("button");b.type="button";b.className="noprint x";b.textContent="✕";b.title="Remove";
  b.onclick=function(){
   if(list.children.length>1){list.removeChild(d);if(list.id==="names")syncGuest();else list.dataset.touched="1";updGuestBtns();}
  };
  var n=document.createElement("span");n.className="gn";
- d.appendChild(n);d.appendChild(i);d.appendChild(s);d.appendChild(ag);d.appendChild(b);list.appendChild(d);updGuestBtns();return i;
+ d.appendChild(n);d.appendChild(i);d.appendChild(s);d.appendChild(ag);d.appendChild(at);d.appendChild(b);list.appendChild(d);updGuestBtns();return i;
 }
 function guestVals(list){
  return Array.prototype.map.call(list.querySelectorAll("input.g-name"),function(x){return x.value.trim()}).filter(Boolean);
@@ -518,7 +620,7 @@ function setPrintMedia(on){
 window.addEventListener("beforeprint",function(){
  var w=document.querySelector(".wrap"),PW=708,PH=945;
  try{
-  w.style.zoom="1";w.style.maxWidth="none";w.style.width=PW+"px";
+  $("notesP").textContent=$("notes").value;w.style.zoom="1";w.style.maxWidth="none";w.style.width=PW+"px";
   setPrintMedia(true);
   growAll();
   var h=w.offsetHeight;
@@ -560,13 +662,16 @@ function lockFirst(){
   Array.prototype.forEach.call(l.children,function(d,j){
    var lock=(i===0&&j===0);
    d.querySelector("input.g-name").readOnly=lock;
-   d.querySelector(".g-chk").disabled=lock;
-   d.querySelector(".chk").style.visibility=lock?"hidden":"visible";
+   var first=(j===0),cb=d.querySelector(".g-chk"),ag=d.querySelector(".g-age");
+   if(first){cb.checked=false;ag.style.display="none";ag.value="";d.querySelector(".agetxt").textContent="";}
+   cb.disabled=first;
+   d.querySelector(".chk").style.visibility=first?"hidden":"visible";
    d.querySelector("button").style.display=lock?"none":"";
   });
  });
 }
 function updGuestBtns(){
+ lockFirst();
  updCounts();
  Array.prototype.forEach.call(roomsEl.children,function(r){
   var a=r.querySelector(".f-addg"),l=r.querySelector(".f-guests");
