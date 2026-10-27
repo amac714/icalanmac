@@ -60,7 +60,7 @@ a{color:var(--accent)}
 .dates{display:flex;gap:8px}
 .dates>div{flex:1;min-width:0}
 .cnt select,.agegrp select{padding:4px 6px;font-size:.85rem}
-.stp{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stp{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
 @media(max-width:640px){.stp{grid-template-columns:1fr}}
 .stp>div{border:1px solid var(--line);border-radius:8px;padding:10px;background:var(--bg);font:.88rem/1.4 system-ui,sans-serif}
 .nb{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-weight:700;margin-right:6px}
@@ -170,11 +170,11 @@ button.primary{background:var(--accent);color:var(--accent-ink)}
 
 <div class="card noprint">
  <h2>How to Reserve</h2>
- <div class="note" style="margin:0 0 8px">Fill in the form below, then:</div>
  <div class="stp">
-  <div><span class="nb">1</span><b>Save as PDF</b><br>Click “Print form” and choose Save as PDF. On a phone, tap “Share as PDF”.</div>
-  <div><span class="nb">2</span><b>Open the email</b><br>Click “Open in email app”. It is already addressed to the hotel.</div>
-  <div><span class="nb">3</span><b>Attach and send</b><br>Attach the PDF and press Send before <b>January 8, 2027</b>.</div>
+  <div><span class="nb">1</span><b>Fill in the form</b><br>Complete the boxes below.</div>
+  <div><span class="nb">2</span><b>Save as PDF</b><br>Click “Print form”, then Save as PDF.</div>
+  <div><span class="nb">3</span><b>Open the email</b><br>Click “Open in email app”.</div>
+  <div><span class="nb">4</span><b>Attach and send</b><br>Attach the PDF and press Send by <b>January 8, 2027</b>.</div>
  </div>
  <div class="note" style="margin-top:8px">Email didn’t open? Click “Copy email text” and paste it into a new email to <a href="mailto:reservations.slbo@shangri-la.com">reservations.slbo@shangri-la.com</a>.</div>
 </div>
@@ -182,7 +182,7 @@ button.primary{background:var(--accent);color:var(--accent-ink)}
 <div class="card">
  <h2>Daily Room Rates (Philippine Peso)</h2>
  <div class="taxinc">All rates are inclusive of applicable taxes and mandatory charges.</div>
- <div class="note noprint" style="margin-bottom:8px">Estimated exchange rate: 1 USD = PHP <input id="fx" type="number" step="0.01" min="1" value="63.00" style="width:90px;display:inline-block;padding:3px 6px"> (you can change this)</div>
+ <div class="note noprint" style="margin-bottom:8px">Estimated exchange rate: 1 USD = PHP <input id="fx" type="number" step="0.01" min="1" value="63.00" style="width:90px;display:inline-block;padding:3px 6px"> (tap to edit)</div>
  <div class="scroll"><table>
   <tr><td>Deluxe Room</td><td class="r">PHP 23,284.50 net</td><td class="r usd" data-php="23284.50"></td></tr>
   <tr><td>Deluxe Seaview Room</td><td class="r">PHP 25,735.50 net</td><td class="r usd" data-php="25735.50"></td></tr>
@@ -195,8 +195,8 @@ button.primary{background:var(--accent);color:var(--accent-ink)}
   <div>
    <b>Room inclusions</b>
    <ul>
-    <li>Roundtrip land and speedboat transfers from Caticlan for (2) adults and (2) children 11 years old and below</li>
-    <li>Breakfast for (2) adults and (2) children 5 years old and below</li>
+    <li>Roundtrip land and speedboat transfers from Caticlan for 2 adults and 2 children (11 and below)<br><i style="font-size:.92em">Airport transfers can be used on any date, not just check-in/out. Inform the hotel in advance.</i></li>
+    <li>Breakfast for 2 adults and 2 children (5 and below)</li>
     <li>Wi-Fi, in-room wired internet, and local calls</li>
     <li>Access to the gym, sauna, steam bath, Jacuzzi, and swimming pool</li>
    </ul>
@@ -204,10 +204,10 @@ button.primary{background:var(--accent);color:var(--accent-ink)}
   <div>
    <b>Rate conditions</b>
    <ul>
-    <li>Eligible stay dates: May 21–27, 2027, subject to availability. Your stay must include <b>May 23–25, 2027</b> to qualify for the room block rate.</li>
+    <li>Stay must include <b>May 23–25, 2027</b> for the room block rate. Eligible dates: May 21–27, 2027, subject to availability.</li>
     <li>Minimum stay: 2 nights</li>
-    <li>Room capacity: 2 adults and 2 children 11 years old and below.</li>
-    <li>Extra adult (max. 1 per room): PHP 4,289.25 net per night.</li>
+    <li>Room capacity: 2 adults, 2 children (11 and below)</li>
+    <li>Extra adult (max. 1): PHP 4,289.25 net/night</li>
     <li>No additional discounts apply</li>
    </ul>
   </div>
@@ -248,7 +248,8 @@ button.primary{background:var(--accent);color:var(--accent-ink)}
 <div class="card est">
  <h2>Estimated Total</h2>
  <div id="estBody" class="note">Select dates and room types to see an estimate.</div>
- <div class="note" style="margin-top:6px">Estimate only; taxes and mandatory charges included.<br>Final confirmation by the hotel, subject to availability.</div>
+ <div class="note" style="margin-top:6px">Estimate only; final confirmation by the hotel, subject to availability.</div>
+ <div class="note" style="margin-top:6px">Payment: bank deposit or credit card payment link, arranged with the hotel.</div>
 </div>
 
 <div id="errBox" class="warn noprint" style="margin:0 0 8px;font-weight:600"></div>
@@ -263,9 +264,9 @@ button.primary{background:var(--accent);color:var(--accent-ink)}
 <div class="card noprint">
  <h2>Ready to send? 3 quick steps</h2>
  <div class="stp">
-  <div><span class="nb">1</span><b>Save as PDF</b><br>Click “Print form” and choose Save as PDF. On a phone, tap “Share as PDF”.</div>
-  <div><span class="nb">2</span><b>Open the email</b><br>Click “Open in email app”. It is already addressed to the hotel.</div>
-  <div><span class="nb">3</span><b>Attach and send</b><br>Attach the PDF and press Send before <b>January 8, 2027</b>.</div>
+  <div><span class="nb">1</span><b>Save as PDF</b><br>Click “Print form”, then Save as PDF.</div>
+  <div><span class="nb">2</span><b>Open the email</b><br>Click “Open in email app”.</div>
+  <div><span class="nb">3</span><b>Attach and send</b><br>Attach the PDF and press Send by <b>January 8, 2027</b>.</div>
  </div>
  <div class="note" style="margin-top:8px">Email didn’t open? Click “Copy email text” and paste it into a new email to <a href="mailto:reservations.slbo@shangri-la.com">reservations.slbo@shangri-la.com</a>.</div>
 </div>
